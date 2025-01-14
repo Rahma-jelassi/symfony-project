@@ -1,0 +1,157 @@
+/* public/css/rooms.css */
+
+/* Conteneur principal pour la liste des chambres */
+.rooms-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Disposition en grille avec des cartes de chambres */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Détails de chaque chambre */
+.room-item {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.room-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.room-item h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.room-item .room-image {
+    width: 100%;
+    height: 200px; /* Limite la hauteur de l'image */
+    object-fit: cover; /* Maintient le ratio d'aspect sans déformation */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.room-item .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.room-item .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Position du bouton de retour */
+.back-button-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.back-button {
+    background: transparent;
+    border: none;
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.back-button i {
+    margin-right: 5px;
+}
+
+/* Espacement pour le titre */
+h1 {
+    margin-top: 60px; /* Ajoute de l'espace en haut pour l'icône */
+}
+
+/* Nouveau CSS pour l'en-tête avec le logo et le titre */
+.page-header {
+    display: flex;
+    justify-content: space-between;  /* Espace entre le logo et le titre */
+    align-items: center;  /* Centre verticalement les éléments */
+    position: relative;  /* Pour positionner le logo et le bouton de manière absolue */
+    padding: 20px;
+    background-color: #fff;  /* Fond blanc pour contraster avec le reste */
+}
+
+/* Conteneur du logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;  /* Un peu d'espace à gauche */
+}
+
+/* Taille du logo */
+.logo-container img {
+    max-width: 120px;  /* Ajustez la taille du logo ici */
+    height: auto;      /* Garder les proportions */
+}
+
+/* Titre de la page */
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;  /* Centrer le titre */
+    flex-grow: 1;
+    padding-right: 50px;  /* Laisser de l'espace pour le bouton de retour */
+}
+
+/* Positionner le bouton de retour en haut à gauche */
+.back-button-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 100; /* Assurez-vous que le bouton soit au-dessus des autres éléments */
+}
+
+.back-button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    color: #0056b3;  /* Changer la couleur sur hover */
+}
+
+
+
+#price-slider {
+    width: 50%;  /* Largeur fixe pour la barre */
+    height: 10px;  /* Hauteur visible pour le slider */
+    margin: 20px 0;  /* Éliminer le centrage, laisser un espace vertical autour de la barre */
+    position: relative;  /* Nécessaire pour ajuster la position des éléments si besoin */
+}
+
+.filter {
+    text-align: left; /* Assure que le contenu du filtre est aligné à gauche */
+    margin-left: 30px; 
+    width: 25%;  /* Taille du formulaire */
+}
+
+.price-values {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between; /* Les valeurs min et max seront sur les bords de la barre */
+    width: 50%;  /* Utilise toute la largeur du conteneur */
+}
+.price-badge {
+    display: flex;
+    align-items: left; /* Aligner la valeur et l'unité */
+    gap: 5px; /* Espace entre la valeur et 'TND' */
+    font-size: 14px;
+}

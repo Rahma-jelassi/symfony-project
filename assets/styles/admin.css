@@ -1,0 +1,168 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container for content */
+.container_admin {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+
+/* Title Styles */
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+
+h3 {
+    color: #3498db;
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-decoration: underline;
+    text-align: left  !important;
+
+}
+
+/* Link Styles */
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+    font-size: 18px;
+    text-align: left;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+}
+
+table td {
+    font-size: 14px;
+}
+
+/* Table Row Styles */
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #ecf0f1;
+}
+
+/* Action buttons in the table */
+button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #c0392b;
+}
+
+/* Form Styles for Delete */
+form {
+    display: inline;
+}
+
+form button {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+form button:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    table th, table td {
+        padding: 8px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    a {
+        font-size: 16px;
+    }
+}
+
+.statistics-section {
+    margin: 20px 0;
+}
+
+.statistics-cards {
+    display: flex;
+    gap: 20px;
+}
+
+.statistics-cards .card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+}
+
+.statistics-cards .card h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.statistics-cards .card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+}

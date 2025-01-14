@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservation{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/form.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+    <!-- Conteneur principal pour les détails de la chambre -->
+    <div class="reservation-container">
+
+        <!-- Icône de retour en haut à gauche -->
+        <button onclick="window.history.back();" class="back-button">
+            <i class="fas fa-arrow-left"></i> Retour
+        </button>
+
+        <!-- En-tête avec logo et titre -->
+        <header class="page-header">
+            <div class="logo-container">
+                <img src="{{ asset('images/logo/tunis dream.png') }}" alt="Logo Tunis Dream Hotel" class="hotel-logo">
+            </div>
+            <h1 class="page-title">Réservation pour la chambre : {{ room.name }}</h1>
+        </header>
+
+        <!-- Formulaire de réservation -->
+        <div class="form-container">
+            {{ form_start(form) }}
+                
+                <!-- Calendriers de dates -->
+                <div class="form-row">
+                    {{ form_row(form.startDate, { 'label': 'Date d\'arrivée' }) }}
+                </div>
+                <div class="form-row">
+                    {{ form_row(form.endDate, { 'label': 'Date de départ' }) }}
+                </div>
+
+                <!-- Affichage du montant calculé -->
+                <div id="amount-container" class="amount-container">
+                    <p id="amount-message"></p>
+                </div>
+
+                <!-- Informations sur le client -->
+                <div class="form-row">
+                    {{ form_row(form.clientName, { 'label': 'Nom du client' }) }}
+                </div>
+                <div class="form-row">
+                    {{ form_row(form.clientAddress, { 'label': 'Adresse du client' }) }}
+                </div>
+                <div class="form-row">
+                    {{ form_row(form.clientEmail, { 'label': 'Email du client' }) }}
+                </div>
+                <div class="form-row">
+                    {{ form_row(form.clientPhone, { 'label': 'Téléphone du client' }) }}
+                </div>
+                {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                {{ message }}
+                </div>
+                {% endfor %} 
+
+                <!-- Bouton Réserver en bas -->
+                <div class="form-submit">
+                    {{ form_row(form.submit) }}
+                </div>
+
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const startDateInput = document.querySelector('input[name="reservation[startDate]"]');
+    const endDateInput = document.querySelector('input[name="reservation[endDate]"]');
+    const amountMessage = document.getElementById('amount-message');
+    const submitButton = document.querySelector('button[type="submit"]'); // Sélectionne le bouton "Réserver"
+
+    function validateDates() {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Supprimer l'heure pour comparer uniquement les dates
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+        let isValid = true;
+
+        // Réinitialiser le message d'erreur à chaque validation
+        amountMessage.textContent = ''; 
+        amountMessage.style.color = 'black';
+
+        // Vérifier si les dates sont remplies
+        if (startDate && endDate && !isNaN(startDate) && !isNaN(endDate)) {
+            // Vérification que les dates ne sont pas dans le passé
+            if (startDate < today || endDate < today) {
+                amountMessage.textContent = 'Les dates choisies ne peuvent pas être dans le passé. Veuillez sélectionner des dates valides.';
+                amountMessage.style.color = 'red';
+                isValid = false;
+            } else if (startDate >= endDate) {
+                // Vérification que la date de départ est postérieure à la date d'arrivée
+                amountMessage.textContent = 'La date de départ doit être postérieure à la date d\'arrivée.';
+                amountMessage.style.color = 'red';
+                isValid = false;
+            } else {
+                // Calcul du montant total
+                const diffTime = endDate - startDate;
+                const nights = diffTime / (1000 * 3600 * 24);
+                const pricePerNight = {{ room.price }};
+                const amount = nights * pricePerNight;
+
+                amountMessage.textContent = `Le montant total pour votre séjour chez Dream Hotel est : ${amount} €.`;
+                amountMessage.style.color = 'green';
+            }
+        } else {
+            // Si les dates sont mal remplies, afficher un message d'erreur
+            if (startDateInput.value || endDateInput.value) {
+                amountMessage.textContent = 'Veuillez remplir correctement les champs de date.';
+                amountMessage.style.color = 'red';
+                isValid = false;
+            }
+        }
+
+        // Activer ou désactiver le bouton "Réserver" en fonction de la validité des dates
+        submitButton.disabled = !isValid;
+    }
+
+    startDateInput.addEventListener('change', validateDates);
+    endDateInput.addEventListener('change', validateDates);
+
+    // Initialiser l'état du bouton au chargement de la page
+    validateDates();
+});
+
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Galerie des Photos{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/photo.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Pour l'icône de retour -->
+
+{% endblock %}
+
+{% block body %}
+     <!-- Icône de retour  -->
+    <div class="back-button-container">
+        <button onclick="window.history.back();" class="back-button">
+            <i class="fas fa-arrow-left"></i> Retour
+        </button>
+    </div>
+    <header class="page-header">
+        <div class="logo-container">
+        <img src="{{ asset('images/logo/tunis dream.png') }}" alt="Logo Tunis Dream Hotel" class="hotel-logo">
+        </div>
+        <h1 class="page-title">Galerie des Photos</h1>
+    </header>
+
+    <section class="photos-gallery-section hotel-overview-gallery">
+        <h2>Aperçu général de l’hôtel</h2>
+        <p class="section-description">Voici un aperçu de notre hôtel, de l'accueil jusqu'aux installations.</p>
+        <div class="gallery-container">
+            {% for photo in photos %}
+                {% if photo starts with 'hall' %}
+                    <img src="{{ asset('images/hall/' ~ photo) }}" alt="{{ photo }}" class="gallery-image">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="photos-gallery-section spa-gallery">
+        <h2>Spa</h2>
+        <p class="section-description">Relaxez-vous dans notre spa de luxe, un endroit idéal pour se ressourcer.</p>
+        <div class="gallery-container">
+            {% for photo in photos %}
+                {% if photo starts with 'spa' %}
+                    <img src="{{ asset('images/spa/' ~ photo) }}" alt="{{ photo }}" class="gallery-image">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="photos-gallery-section rooms-gallery">
+        <h2>Chambres et Suites</h2>
+        <p class="section-description">Découvrez nos chambres et suites, conçues pour votre confort et bien-être.</p>
+        <div class="gallery-container">
+            {% for photo in photos %}
+                {% if photo starts with 'room' %}
+                    <img src="{{ asset('images/rooms/' ~ photo) }}" alt="{{ photo }}" class="gallery-image">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="photos-gallery-section resto-gallery">
+        <h2>Restauration</h2>
+        <p class="section-description">Savourez une cuisine raffinée dans notre restaurant.</p>
+        <div class="gallery-container">
+            {% for photo in photos %}
+                {% if photo starts with 'resto' %}
+                    <img src="{{ asset('images/resto/' ~ photo) }}" alt="{{ photo }}" class="gallery-image">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="photos-gallery-section meeting-gallery">
+        <h2>Événements et Réunions</h2>
+        <p class="section-description">Nos salles sont idéales pour vos événements et réunions professionnelles.</p>
+        <div class="gallery-container">
+            {% for photo in photos %}
+                {% if photo starts with 'meet' %}
+                    <img src="{{ asset('images/meet/' ~ photo) }}" alt="{{ photo }}" class="gallery-image">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

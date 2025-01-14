@@ -1,0 +1,134 @@
+/* room_details.css */
+
+/* Container principal */
+.room-details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* Centrer le texte de l'ensemble de la page */
+    position: relative; /* Pour positionner le bouton de retour de façon absolue */
+    padding-top: 80px; /* Espacement supplémentaire en haut pour ne pas chevaucher le bouton retour */
+}
+
+/* Container de l'image */
+.room-image-container {
+    margin-bottom: 20px; /* Espacement entre l'image et les détails */
+    display: flex;
+    justify-content: center; /* Centrer l'image horizontalement */
+}
+
+.room-image-container img {
+    max-width: 60%; /* Réduire la taille de l'image à 60% de la largeur disponible */
+    height: auto;
+    border-radius: 8px; /* Facultatif, ajoute un effet arrondi à l'image */
+}
+
+/* Container des informations de la chambre */
+.room-info-container {
+    margin-top: 20px;
+    text-align: left; /* Centrer le texte sous l'image mais aligner les titres à gauche */
+    display: inline-block;
+    max-width: 800px; /* Limiter la largeur des détails */
+}
+
+/* Section de chaque partie (Description, Prix, etc.) */
+.room-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0; /* Ligne de séparation entre les sections */
+}
+
+/* Pour les titres de section */
+.room-section h3 {
+    margin: 0;
+    padding-bottom: 10px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+/* Pour les textes de chaque section */
+.room-section p {
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Le bouton de retour */
+.back-button-container {
+    position: absolute; /* Position absolue pour fixer le bouton */
+    top: 20px; /* Espacement depuis le haut de la page */
+    left: 20px; /* Espacement depuis le bord gauche */
+    z-index: 100; /* Pour s'assurer qu'il soit au-dessus des autres éléments */
+}
+.back-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.back-button i {
+    margin-right: 8px;
+}
+
+/* Effet hover sur le bouton de retour */
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+/* Bouton Réserver */
+.reserve-button-container {
+    margin-top: 30px; /* Espacement au-dessus du bouton */
+    text-align: center;
+}
+
+.reserve-button {
+    background-color: #28a745; /* Vert pour indiquer une action positive */
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.reserve-button:hover {
+    background-color: #218838; /* Un vert un peu plus foncé lors du survol */
+}
+
+/* En-tête avec logo et titre */
+.page-header {
+    display: flex;
+    justify-content: center;  /* Centrer le titre et le logo horizontalement */
+    align-items: center;  /* Centrer verticalement */
+    position: relative;  /* Nécessaire pour les éléments enfants */
+    padding: 20px 0;
+    background-color: #fff;  /* Fond blanc pour un contraste avec le reste */
+}
+
+/* Conteneur pour le logo */
+.logo-container {
+    position: absolute;  /* Pour positionner le logo sans gêner les autres éléments */
+    left: 20px;  /* Décalage du logo depuis la gauche */
+    top: 50%;  /* Centrer verticalement */
+    transform: translateY(-50%);  /* Ajuster pour un centrage parfait */
+}
+
+/* Réduction de la taille du logo */
+.logo-container img {
+    max-width: 120px;  /* Ajustez la taille du logo ici */
+    height: auto;      /* Conserver les proportions */
+}
+
+/* Titre de la page */
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;  /* Centrer le titre */
+    flex-grow: 1;
+}

@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chambres Disponibles{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/rooms.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Pour l'icône de retour -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.css">
+
+{% endblock %}
+
+{% block body %}
+    <!-- En-tête avec logo et bouton de retour -->
+    <div class="page-header">
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="{{ asset('images/logo/tunis dream.png') }}" alt="Logo">
+        </div>
+
+        <h1 class="page-title">Nos Chambres Disponibles</h1>
+        
+        <div class="back-button-container">
+            <button onclick="window.history.back();" class="back-button">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+        </div>
+    </div>
+
+    {# Formulaire de filtrage avec range slider pour les prix en TND #}
+    <form method="GET" action="{{ path('client_rooms') }}" class="filter-form">
+    <div class="filter">
+        <label for="price_range">Filtrer par Prix (TND)</label>
+        <div id="price-slider"></div>
+        <div class="price-values">
+            <div class="price-badge">
+                <span id="price-min">{{ minPrice }}</span> TND 
+            </div>
+            <div class="price-badge">
+                <span id="price-max">{{ maxPrice }}</span> TND
+            </div>
+        </div>    
+    </div>
+    <input type="hidden" id="min_price_input" name="min_price" value="{{ minPrice }}">
+    <input type="hidden" id="max_price_input" name="max_price" value="{{ maxPrice }}">
+    <button type="submit" class="btn btn-primary">Filtrer</button>
+</form>
+
+
+    <div class="rooms-list">
+        {% for room in rooms %}
+            <div class="room-item">
+                <h2>{{ room.name }}</h2>
+
+                {# Affichage de l'image de la chambre si elle existe #}
+                {% if room.imageFilename %}
+                    <img src="{{ asset('images/rooms/' ~ room.imageFilename) }}" alt="{{ room.name }}" class="room-image">
+                {% else %}
+                    <img src="{{ asset('images/rooms/default.jpg') }}" alt="Image par défaut" class="room-image">
+                {% endif %}
+
+                <p><strong>Prix :</strong> {{ room.price }} TND</p>
+
+                {# Bouton pour voir les détails de la chambre #}
+                <a href="{{ path('client_room_details', {'id': room.id}) }}" class="btn btn-primary">Voir les détails</a>
+            </div>
+        {% else %}
+            <p>Aucune chambre disponible pour le moment.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    // Initialisation de noUiSlider pour le filtrage par prix
+    const slider = document.getElementById('price-slider');
+    const minPriceInput = document.getElementById('min_price_input');
+    const maxPriceInput = document.getElementById('max_price_input');
+    const priceMinDisplay = document.getElementById('price-min');
+    const priceMaxDisplay = document.getElementById('price-max');
+
+    noUiSlider.create(slider, {
+        start: [{{ minPrice }}, {{ maxPrice }}], // Valeurs initiales
+        connect: true,
+        range: {
+            min: 0,
+            max: 1000,
+        },
+        step: 10,
+    });
+
+    // Mise à jour des valeurs affichées et des inputs cachés
+    slider.noUiSlider.on('update', function (values) {
+        const [min, max] = values.map(value => Math.round(value));
+        priceMinDisplay.textContent = min;
+        priceMaxDisplay.textContent = max;
+        minPriceInput.value = min;
+        maxPriceInput.value = max;
+    });
+});
+    </script>
+{% endblock %}

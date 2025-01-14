@@ -1,0 +1,166 @@
+/* Mise en page générale */
+.reservation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alignement vers le haut */
+    max-width: 800px;
+    height: 88vh; /* Réduit la hauteur du conteneur à 70% de la fenêtre */
+    margin: 0 auto;
+    padding: 15px; /* Réduit les marges internes */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-top: 40px; /* Réduit l'espace en haut */
+}
+
+/* En-tête avec logo et titre */
+.page-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px; /* Réduit l'espace en haut */
+}
+
+.page-title {
+    font-size: 1.5rem; /* Réduit la taille du titre */
+    text-align: center;
+    margin-bottom: 20px; /* Réduit l'espacement sous le titre */
+}
+
+/* Logo */
+.logo-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.hotel-logo {
+    width: 100px; /* Réduit la taille du logo */
+    height: auto;
+}
+
+/* Bouton retour */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 150px; /* Un peu à droite du logo pour éviter le chevauchement */
+    background-color: #000000;
+    color: white;
+    padding: 8px 16px; /* Réduit la taille du bouton */
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.back-button i {
+    margin-right: 8px;
+}
+
+/* Effet hover sur le bouton de retour */
+.back-button:hover {
+    background-color: gold;;
+}
+
+/* Formulaire */
+.form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Espacement des lignes du formulaire */
+.form-row {
+    width: 70%;
+    margin-bottom: 10px; /* Réduit l'espacement entre les champs */
+}
+
+/* Espace entre les champs */
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="submit"] {
+    width: 100%;
+    padding: 10px; /* Réduit la taille des champs */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.2rem; /* Réduit la taille du texte des champs */
+    margin-bottom: 15px; /* Espacement réduit */
+}
+
+.amount-container {
+    margin-bottom: 10px; /* Réduit l'espacement sous le montant */
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+/* Bouton de soumission */
+.form-submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Réduit l'espace au-dessus du bouton */
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    font-size: 1.3rem; /* Réduit la taille du texte du bouton */
+    transition: background-color 0.3s;
+    padding: 12px 25px; /* Réduit le padding du bouton */
+    border-radius: 8px;
+    width: 200px; /* Largeur fixe pour le bouton */
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+/*  alerte*/
+/* Style des messages d'erreur */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.alert-danger {
+    padding: 8px 12px; /* Réduction du padding pour rendre l'alerte plus compacte */
+
+    background-color: #f8d7da; /* Couleur de fond claire pour l'erreur */
+    color: #721c24; /* Couleur du texte rouge pour l'erreur */
+    border: 1px solid #f5c6cb; /* Bordure rouge clair */
+}
+
+
+
+/* Optionnel : ajout d'une icône d'avertissement (facultatif) */
+.alert-danger::before {
+    content: "⚠️"; /* Icône d'avertissement */
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+/* Optionnel : icône de fermeture */
+.alert .close {
+    font-size: 18px;
+    color: #721c24;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.alert .close:hover {
+    color: #f5c6cb;
+}
+
+/* Pour le cas où le message est juste un peu plus long, centrer tout le contenu */
+.alert p {
+    margin: 0;
+}

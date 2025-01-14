@@ -1,0 +1,68 @@
+/* Style général pour la page de confirmation */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Conteneur principal */
+h1 {
+    font-size: 2em;
+    color: #2d3748; /* Couleur de texte principale */
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.1em;
+    color: #4a5568;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 60%;
+}
+
+/* Bouton de retour à l'accueil */
+a.btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+a.btn:hover {
+    background-color: #2980b9;
+}
+
+/* Espacement du bouton par rapport aux autres éléments */
+a.btn {
+    margin-top: 30px;
+}
+
+/* Ajouter un style de bordure et ombre pour le texte */
+h1, p {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Conteneur du logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;  /* Un peu d'espace à gauche */
+}
+
+/* Taille du logo */
+.logo-container img {
+    max-width: 120px;  /* Ajustez la taille du logo ici */
+    height: auto;      /* Garder les proportions */
+}

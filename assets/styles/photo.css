@@ -1,0 +1,149 @@
+/* Section de la galerie */
+.photos-gallery-section {
+    margin-bottom: 60px;  /* Augmentation de l'espacement entre les sections */
+    text-align: center;  /* Centrer le texte dans chaque section */
+}
+
+/* Centrer le titre et ajouter un style plus joli */
+.photos-gallery-section h2 {
+    font-size: 2rem;  /* Augmenter la taille du titre */
+    color: #000;  /* Couleur noire pour le texte */
+    font-weight: bold;
+    margin-bottom: 20px;  /* Espacement sous le titre */
+    text-transform: uppercase;  /* Mettre en majuscule pour une meilleure lisibilité */
+    letter-spacing: 1px;  /* Espacement entre les lettres pour un effet moderne */
+    position: relative;
+    text-align: center;  /* Assurer que le titre soit bien centré */
+}
+
+
+
+/* Description sous chaque section */
+.section-description {
+    font-size: 1.2rem;  /* Agrandir la taille de la description */
+    color: #333;  /* Texte en gris foncé pour plus de lisibilité */
+    text-align: center;  /* Centrer le texte */
+    margin-top: 10px;
+    margin-bottom: 30px;
+    line-height: 1.6;  /* Plus d'espace entre les lignes pour faciliter la lecture */
+    width: 80%;  /* Limiter la largeur du texte pour éviter qu'il ne soit trop étendu */
+    margin-left: auto;
+    margin-right: auto;  /* Centrer le paragraphe dans la page */
+}
+
+/* Ligne de séparation entre les sections */
+.section-divider {
+    border: none;
+    border-top: 2px solid #ddd;  /* Ligne fine et discrète */
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Conteneur pour les images */
+.gallery-container {
+    display: grid;  /* Utilisation de grid pour une disposition plus flexible */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));  /* Ajuster le nombre de colonnes selon la taille de l'écran */
+    gap: 20px;
+    justify-items: center;  /* Centrer les images */
+}
+
+/* Style pour les images - Taille uniforme */
+.gallery-image {
+    width: 100%;  /* Prendre toute la largeur du conteneur */
+    max-width: 350px;  /* Limiter la taille maximale des images */
+    height: 250px;  /* Fixer la hauteur des images */
+    object-fit: cover;  /* Assurer que l'image couvre l'espace sans déformation */
+    border-radius: 8px;  /* Bordures arrondies pour un aspect plus doux */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Ombre plus marquée pour un effet 3D */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet au survol des images */
+.gallery-image:hover {
+    transform: scale(1.05);  /* Légère agrandissement au survol */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);  /* Ombre plus forte au survol */
+}
+
+/* Pour les petits écrans (responsive design) */
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));  /* Nombre de colonnes ajusté sur petit écran */
+    }
+    .gallery-image {
+        max-width: 100%;  /* Les images occuperont toute la largeur de leur conteneur */
+        height: 200px;  /* Ajuster la hauteur pour les petits écrans */
+    }
+}
+.page-title {
+    font-size: 2.5rem;  /* Taille du titre */
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+
+}
+/* Ajouter une ligne sous chaque titre pour plus d'élégance */
+.photos-gallery-section h2::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background-color: #000;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/* Le bouton de retour */
+/* Conteneur du bouton de retour */
+.back-button-container {
+    position: absolute;  /* Position absolue pour être indépendant du flux normal */
+    top: 20px;  /* Distance du haut de la page */
+    left: 20px;  /* Distance du côté gauche de la page */
+    z-index: 10;  /* Assure que le bouton reste au-dessus des autres éléments */
+}
+
+/* Style du bouton de retour */
+.back-button {
+    background-color: transparent;  /* Fond transparent pour ne pas gêner la visibilité */
+    border: none;  /* Pas de bordure pour un look moderne */
+    font-size: 1.2rem;  /* Taille de la police pour le texte */
+    color: #000;  /* Couleur du texte en noir */
+    padding: 10px 15px;  /* Padding pour donner un peu d'espace autour du texte */
+    cursor: pointer;  /* Curseur pointer pour indiquer que c'est cliquable */
+    display: flex;  /* Utilisation de flexbox pour aligner l'icône et le texte */
+    align-items: center;  /* Centrer verticalement l'icône et le texte */
+    text-decoration: none;  /* Pas de soulignement */
+    border-radius: 5px;  /* Bord arrondi pour un look plus doux */
+}
+
+/* Style de l'icône de retour */
+.back-button i {
+    margin-right: 10px;  /* Espacement entre l'icône et le texte */
+    font-size: 1.5rem;  /* Agrandir l'icône */
+}
+
+/* Style du header avec logo et titre */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;  /* Fond blanc pour l'en-tête */
+    position: relative;  /* Permet de contrôler la position des éléments à l'intérieur */
+}
+
+/* Conteneur pour le logo */
+.logo-container {
+    flex-grow: 1;  /* Le logo occupe tout l'espace restant */
+    display: flex;
+    justify-content: flex-start;  /* Aligner le logo à gauche */
+}
+
+
+/* On garde l’espacement entre les sections et on garde la visibilité du retour */
+.photos-gallery-section {
+    margin-top: 80px; /* Décalage pour laisser de l'espace pour le bouton de retour */
+}

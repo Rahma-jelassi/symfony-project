@@ -3,3 +3,38 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+# Définition des routes
+app_index:
+    path: / #page client index
+    controller: App\Controller\IndexController::index
+
+app_admin:
+    path: /admin #page admin
+    controller: App\Controller\AdminController::admin
+
+# Page de connexion 
+app_login:
+    path: /login #page login awel page
+    controller: App\Controller\LoginController::login
+
+# Rediriger vers la page de connexion par défaut
+#  app_home:
+    # path: /
+    # controller: App\Controller\LoginController::login
+client_rooms:
+    path: /rooms #page rooms
+    controller: App\Controller\IndexController::rooms
+client_room_details:
+    path: /room/{id} #page details de chaque room +id 
+    controller: App\Controller\IndexController::roomDetails
+photos:
+    path: /photos
+    controller: App\Controller\IndexController::photos
+reservation_page:
+    path: /reservation/{roomId}
+    controller: App\Controller\IndexController::reservation
+admin_update_reservation_status:
+    path: /admin/reservation/{id}/update-status/{status}
+    controller: App\Controller\AdminController::updateReservationStatus
+    methods: [GET, POST]

@@ -1,0 +1,22 @@
+{# templates/reservation/success.html.twig #}
+
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/success.css') }}">
+{% endblock %}
+
+{% block title %}Réservation confirmée{% endblock %}
+
+{% block body %}
+    <div class="logo-container">
+        <img src="{{ asset('images/logo/tunis dream.png') }}" alt="Logo">
+     </div>
+    <h1>Votre réservation a été prise en compte!</h1>
+    <p>Nous vous appellerons pour confirmer la réservation ..</p>
+    <p>Merci pour votre confiance, toute l'équipe Dream vous souhaite une bonne journée!</p>
+
+    <a href="{{ path('app_index') }}" class="btn btn-primary">
+        Retour à l'accueil
+    </a>
+{% endblock %}
+

@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Room index{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/index_admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Pour l'icône de retour -->
+{% endblock %}
+
+{% block body %}
+    <h1>Room index</h1>
+    <!-- Icône de retour -->
+    <a href="{{ path('app_admin') }}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Retour
+    </a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Size</th>
+                <th>BedType</th>
+                <th>MaxOccupancy</th>
+                <th>Features</th>
+                <th>BathroomFeatures</th>
+                <th>Furnishings</th>
+                <th>Services</th>
+                <th>Internet</th>
+                <th>Phone</th>
+                <th>ImageFilename</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.id }}</td>
+                <td>{{ room.name }}</td>
+                <td>{{ room.description }}</td>
+                <td>{{ room.price }}</td>
+                <td>{{ room.size }}</td>
+                <td>{{ room.bedType }}</td>
+                <td>{{ room.maxOccupancy }}</td>
+                <td>{{ room.features }}</td>
+                <td>{{ room.bathroomFeatures }}</td>
+                <td>{{ room.furnishings }}</td>
+                <td>{{ room.services }}</td>
+                <td>{{ room.internet }}</td>
+                <td>{{ room.phone }}</td>
+                <td>
+                    <!-- Affichage de l'image de la chambre -->
+                    <img src="{{ asset('images/rooms/' ~ room.imageFilename) }}" alt="{{ room.name }}" class="room-image"style="width: 100px; height: 100px; object-fit: cover;">
+                </td>
+                    <td>
+
+                    <!-- Bouton Show -->
+                    <a href="{{ path('app_room_show', {'id': room.id}) }}" class="btn btn-info">Show</a>
+                    <!-- Bouton Edit -->
+                    <a href="{{ path('app_room_edit', {'id': room.id}) }}" class="btn btn-warning">Edit</a>
+                    
+                    <!-- Formulaire de suppression avec bouton Delete -->
+                    <form action="{{ path('app_room_delete', {'id': room.id}) }}" method="post" style="display:inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ room.id) }}">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_room_new') }}" class="btn btn-success">Create new</a>
+{% endblock %}

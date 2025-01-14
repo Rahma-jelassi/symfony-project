@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page Administrateur{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Pour les icônes -->
+{% endblock %}
+
+{% block body %}
+<div class="container_admin">
+    <!-- Icône de retour -->
+    <a href="{{ path('app_login') }}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Retour
+    </a>
+    <h2>Bienvenue sur la page d'administration</h2>
+
+    <!-- Gestion des chambres -->
+    <h3>Gestion des chambres</h3>
+    <a href="{{ path('app_room_index') }}" class="btn btn-primary">Voir la liste des chambres</a>
+    <a href="{{ path('app_room_new') }}" class="btn btn-success">Ajouter une nouvelle chambre</a>
+
+    <h3>Liste des chambres</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+                <tr>
+                    <td>{{ room.id }}</td>
+                    <td>{{ room.name }}</td>
+                    <td>{{ room.description }}</td>
+                    <td>{{ room.price }}</td>
+                    <td>
+                        <a href="{{ path('app_room_show', {'id': room.id}) }}" class="btn btn-info">Afficher</a>
+                        <a href="{{ path('app_room_edit', {'id': room.id}) }}" class="btn btn-warning">Modifier</a>
+                        <form action="{{ path('app_room_delete', {'id': room.id}) }}" method="post" style="display:inline;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ room.id) }}">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Aucune chambre disponible.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Gestion des réservations -->
+    <h3>Liste des réservations</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Chambre</th>
+                <th>Client</th>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>État</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.id }}</td>
+                    <td>{{ reservation.room.name }}</td>
+                    <td>{{ reservation.clientName }}</td>
+                    <td>{{ reservation.startDate|date('Y-m-d') }}</td>
+                    <td>{{ reservation.endDate|date('Y-m-d') }}</td>
+                    <td>
+                        {% if reservation.status == 'pending' %}
+                            <span class="badge badge-warning">En attente</span>
+                        {% elseif reservation.status == 'confirmed' %}
+                            <span class="badge badge-success">Confirmée</span>
+                        {% else %}
+                            <span class="badge badge-danger">Rejetée</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <!-- Boutons pour accepter/rejeter une réservation -->
+                        {% if reservation.status == 'pending' %}
+                            <a href="{{ path('admin_update_reservation_status', {'id': reservation.id, 'status': 'confirmed'}) }}" class="btn btn-success btn-sm">Accepter</a>
+                            <a href="{{ path('admin_update_reservation_status', {'id': reservation.id, 'status': 'rejected'}) }}" class="btn btn-danger btn-sm">Rejeter</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">Aucune réservation disponible.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="statistics-section">
+    <h3>Statistiques</h3>
+    <div class="statistics-cards">
+        <div class="card">
+            <h4>Total Chambres</h4>
+            <p>{{ statistics.totalRooms }}</p>
+        </div>
+        <div class="card">
+            <h4>Total Réservations</h4>
+            <p>{{ statistics.totalReservations }}</p>
+        </div>
+        <div class="card">
+            <h4>Réservations Confirmées</h4>
+            <p>{{ statistics.confirmedReservations }}</p>
+        </div>
+        <div class="card">
+            <h4>Réservations Rejetées</h4>
+            <p>{{ statistics.rejectedReservations }}</p>
+        </div>
+        <div class="card">
+            <h4>Réservations en Attente</h4>
+            <p>{{ statistics.pendingReservations }}</p>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

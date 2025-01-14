@@ -1,0 +1,267 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<header class="main-header">
+    <div class="hotel-info">
+        <!-- Logo de l'hôtel -->
+        <img src="{{ asset('images/logo/tunis dream.png') }}" alt="Logo Tunis Dream Hotel" class="hotel-logo">
+        <div class="hotel-name">
+            <h1>Tunis Dream Hotel</h1>
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div> <!-- 5 étoiles -->
+        </div>
+    </div>
+
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="{{ path('app_index') }}" class="{{ app.request.get('_route') == 'app_index' ? 'active' : '' }}">
+                    Presentation
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('photos') }}" class="{{ app.request.get('_route') == 'photos' ? 'active' : '' }}">Photos</a>
+            </li>
+            <li>
+                <a href="{{ path('client_rooms') }}" class="{{ app.request.get('_route') == 'client_rooms' ? 'active' : '' }}">Rooms</a>
+            </li>
+    
+        </ul>
+    </nav>
+</header>
+
+<!-- Informations de contact et réservation -->
+<div class="contact-info">
+    <div class="contact-left">
+        <!-- Afficher le plan -->
+        <div class="plan">
+            <i class="fas fa-map-marker-alt"></i>
+            <a href="#plan" onclick="showMap()">Afficher le plan</a>
+        </div>
+        <!-- Numéro de téléphone -->
+        <div class="phone">
+            <i class="fas fa-phone"></i>
+            <span>+216 26433268</span>
+        </div>
+    </div>
+    
+</div>
+
+<!-- Sections de l'hôtel -->
+<div class="hotel-sections">
+
+    <!-- Section Image de l'hôtel -->
+    <div class="hotel-image">
+        <img src="{{ asset('images/hotel/hotel2.jpg') }}" alt="Hôtel" class="hotel-image">
+    </div>
+
+    <!-- Nouvelle section "Bienvenue" -->
+    <div class="welcome-section">
+        <h2>Bienvenue dans l’établissement Tunis Dream Hotel</h2>
+        <p>
+            Voyagez autrement dans notre hôtel à Tunis. Laissez votre imagination voyager et explorez des sites historiques et culturels comme la médina, Carthage et le musée du Bardo, pour vous imprégner de l'hospitalité et de la culture de la région. Réservez dès maintenant pour vivre une expérience inoubliable.
+        </p>
+    </div>
+
+    <!-- Section Chambres -->
+    <div class="image-gallery">
+        <h2>Découvrez nos chambres</h2>
+        <p>Explorez nos chambres à travers ces images.</p>
+        <div class="gallery-wrapper">
+            <!-- Flèche gauche -->
+            <button class="scroll-button left" onclick="scrollGallery('left')">←</button>
+
+            <!-- Conteneur des images -->
+            <div class="gallery-container">
+                <div class="image-item">
+                    <img src="{{ asset('images/rooms/room1.jpg') }}" alt="Chambre 1">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/rooms/room2.jpg') }}" alt="Chambre 2">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/rooms/room3.jpg') }}" alt="Chambre 3">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/rooms/room4.jpg') }}" alt="Chambre 4">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/rooms/room5.jpeg') }}" alt="Chambre 5">
+                </div>
+            </div>
+
+            <!-- Flèche droite -->
+            <button class="scroll-button right" onclick="scrollGallery('right')">→</button>
+        </div>
+        <a href="{{ path('client_rooms') }}" class="view-more">Voir plus</a>
+    </div>
+
+    {% block javascripts %}
+    <script src="{{ asset('js/gallery.js') }}"></script>
+    {% endblock %}
+
+    <!-- Nouvelle section Élégance Moderne -->
+    <div class="elegance-section">
+        <h2>Élégance moderne</h2>
+        <p>Une élégance moderne pour un séjour sublimé</p>
+        <p>Offrez-vous un séjour qui transcende l’ordinaire et, dès votre entrée, laissez-vous séduire par la fusion harmonieuse du design moderne et du confort luxueux de notre hôtel. Ici chaque espace a été soigneusement conçu, du mobilier élégant aux détails subtils tout en sophistication.</p>
+    </div>
+
+    <div class="image-gallery">
+        <h2>Découvrez notre élégance moderne</h2>
+        <p>Explorez à travers ces images notre design et le confort luxueux qui vous attendent.</p>
+        <div class="gallery-wrapper">
+            <!-- Flèche gauche -->
+            <button class="scroll-button left" onclick="scrollGallery('left')">←</button>
+
+            <!-- Conteneur des images -->
+            <div class="gallery-container" id="hall-gallery">
+                <div class="image-item">
+                    <img src="{{ asset('images/hall/hall1.jpg') }}" alt="Design Moderne 1">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/hall/hall2.jpg') }}" alt="Design Moderne 2">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/hall/hall3.jpg') }}" alt="Design Moderne 3">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/hall/hall4.jpg') }}" alt="Design Moderne 4">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/hall/hall5.jpg') }}" alt="Design Moderne 5">
+                </div>
+            </div>
+
+            <!-- Flèche droite -->
+            <button class="scroll-button right" onclick="scrollGallery('right')">→</button>
+        </div>
+    </div>
+
+    <!-- Nouvelle section avant "Raffinement et décontraction" -->
+    <div class="container">
+        <div class="content-section">
+            <div class="image">
+                <img src="{{ asset('images/coworking/working.jpg') }}" alt="Image working space" class="section-image">
+            </div>
+            <div class="description">
+                <h2>Raffinement et décontraction pour mieux travailler</h2>
+                <p>Détendez-vous avec la boisson de votre choix tout en vous plongeant dans vos tâches dans un cadre décontracté et contemporain. Plus qu’un espace de travail, découvrez un environnement dynamique où la productivité va de pair avec le confort, et où les idées circulent aussi bien que les boissons servies.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="image">
+                <img src="{{ asset('images/rooftop/rooftop1.jpg') }}" alt="Image Restaurant" class="section-image">
+            </div>
+            <div class="description">
+                <h2>Rooftop</h2>
+                <h3>Admirer l’horizon avec sérénité</h3>
+                <p>Élevez vos sens au sommet du confort et de la tranquillité. Notre rooftop vous invite à vous détendre tout en admirant l’horizon infini, où le ciel se confond avec la mer, créant un spectacle visuel inoubliable. Que ce soit pour savourer un cocktail au coucher du soleil ou simplement respirer l’air frais tout en contemplant la beauté de la ville, chaque instant passé ici est une évasion.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="image">
+                <img src="{{ asset('images/resto/resto1.jpg') }}" alt="Image Restaurant" class="section-image">
+            </div>
+            <div class="description">
+                <h2>Restaurant</h2>
+                <p>Notre restaurant propose une cuisine exquise dans une ambiance conviviale. Venez découvrir nos plats préparés avec soin.</p>
+            </div>
+        </div>
+<!-- Section Spa -->
+
+        <div class="content-section"><!-- Section Spa -->
+
+             <div class="image">
+                <img src="{{ asset('images/club/club1.jpeg') }}" alt="Image Club" class="section-image">
+            </div>
+            <div class="description">
+                <h2>Club</h2>
+                <p>Rejoignez notre club pour des soirées animées, de la bonne musique et des moments inoubliables !</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section Spa -->
+<div class="spa-section">
+            <div class="description">
+                <h2>Spa</h2>
+                <p>Venez vous détendre et profiter de notre espace bien-être. Offrez-vous une expérience de relaxation ultime dans notre spa de luxe, où chaque soin est une invitation à la sérénité.</p>
+            </div>
+    <div class="container">
+        <div class="content-section">
+            <div class="images-list">
+                <div class="image-item">
+                    <img src="{{ asset('images/spa/spa3.jpg') }}" alt="Spa 1" class="section-image">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/spa/spa4.jpg') }}" alt="Spa 2" class="section-image">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/spa/spa5.jpg') }}" alt="Spa 3" class="section-image">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/spa/spa6.jpg') }}" alt="Spa 4" class="section-image">
+                </div>
+                <div class="image-item">
+                    <img src="{{ asset('images/spa/spa7.jpg') }}" alt="Spa 4" class="section-image">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Section de la carte -->
+<div id="plan" style="display: none; padding-top: 20px;">
+    <h2>Plan de l'hôtel</h2>
+    <div id="map"></div>
+</div>
+
+<script>
+    // Fonction pour afficher la carte
+    function showMap() {
+        // Afficher la carte
+        document.getElementById("plan").style.display = "block";
+
+        // Défilement automatique vers le plan
+        window.scrollTo({
+            top: document.getElementById("plan").offsetTop,
+            behavior: "smooth"
+        });
+
+        const map = L.map('map').setView([33.8869, 9.5375], 12); // Coordonnées fictives de Tunis
+
+        // Ajouter la couche OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Ajouter un marqueur à la carte
+        L.marker([33.8869, 9.5375]).addTo(map)
+            .bindPopup("Hôtel Fictif à Tunis")
+            .openPopup();
+    }
+</script>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> <!-- Script Leaflet -->
+
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <h2>Contact / À propos de nous</h2>
+        <p>Email : <a href="mailto:contact@tunisdreamhotel.com">contact@tunisdreamhotel.com</a></p>
+        <p>Téléphone : <a href="tel:+21612345678">+216 12 345 678</a></p>
+        <p>Adresse : Avenue des Champs-Élysées, Tunis, Tunisie</p>
+        
+        <div class="social-media">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">Facebook</a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">Instagram</a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">Twitter</a>
+        </div>
+    </div>
+</footer>
+{% endblock %}

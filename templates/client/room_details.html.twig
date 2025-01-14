@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la Chambre : {{ room.name }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/room_details.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Pour l'icône de retour -->
+{% endblock %}
+
+{% block body %}
+    <div class="room-details-container">
+        <!-- Icône de retour en haut à gauche -->
+        <div class="back-button-container">
+            <button onclick="window.history.back();" class="back-button">
+                <i class="fas fa-arrow-left"></i> Retour
+            </button>
+        </div>
+
+        <header class="page-header">
+            <div class="logo-container">
+                <img src="{{ asset('images/logo/tunis dream.png') }}" alt="Logo Tunis Dream Hotel" class="hotel-logo">
+            </div>
+            <h1 class="page-title">Détails de la Chambre : {{ room.name }}</h1>
+        </header>
+
+        <div class="room-image-container">
+            {% if room.imageFilename %}
+                <img src="{{ asset('images/rooms/' ~ room.imageFilename) }}" alt="{{ room.name }}" class="room-image">
+            {% else %}
+                <img src="{{ asset('images/rooms/default.jpg') }}" alt="Image par défaut" class="room-image">
+            {% endif %}
+        </div>
+
+        <div class="room-info-container">
+            <h1>{{ room.name }}</h1>
+            <div class="room-section">
+                <h3>Description</h3>
+                <p>{{ room.description }}</p>
+            </div>
+            <div class="room-section">
+                <h3>Prix</h3>
+                <p>{{ room.price }} TND</p>
+            </div>
+            <div class="room-section">
+                <h3>Caractéristiques</h3>
+                <p>{{ room.features }}</p>
+            </div>
+            <div class="room-section">
+                <h3>Services</h3>
+                <p>{{ room.services }}</p>
+            </div>
+            <div class="room-section">
+                <h3>Lits et Literie</h3>
+                <p><strong>Occupation maximale :</strong> {{ room.maxOccupancy }} personne(s)</p>
+                <p>{{ room.bedType }}</p>
+                <p><strong>Lit d'appoint :</strong> Non autorisé</p>
+                <p><strong>Berceaux autorisés :</strong> 1</p>
+            </div>
+            <div class="room-section">
+                <h3>Caractéristiques de la chambre</h3>
+                {% if room.size %}
+                    <p>{{ room.size }} m²</p>
+                {% endif %}
+                <p>Climatisation</p>
+                <p>Chambre non-fumeur</p>
+            </div>
+            <div class="room-section">
+                <h3>Caractéristiques de la salle de bains</h3>
+                <p>Sèche-cheveux</p>
+            </div>
+            <div class="room-section">
+                <h3>Mobilier</h3>
+                <p>Canapé</p>
+                <p>Coffre dans la chambre (payant)</p>
+                <p>Bureau, pouvant être déplacé</p>
+                <p>Fer et planche à repasser</p>
+            </div>
+
+            <!-- Bouton Réserver -->
+            <div class="reserve-button-container">
+                <a href="{{ path('reservation_page', {'roomId': room.id}) }}" class="reserve-button">
+                 Réserver cette chambre
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
